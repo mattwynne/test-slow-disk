@@ -1,0 +1,13 @@
+version: '2.4'
+services:
+  slow:
+    build: .
+    volumes:
+      - ./data:/data
+    blkio_config:
+      device_write_bps:
+         - path: /dev/vda
+           rate: '${RATE:-1M}'
+      device_read_bps:
+         - path: /dev/vda
+           rate: '${RATE:-1M}'
